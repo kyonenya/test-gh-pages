@@ -1,0 +1,63 @@
+/**
+ * 記事一覧リスト
+ */
+
+.bl_posts_item {
+  padding: 0.5em 0;
+  border-bottom: 1px solid var(--monochrome-light);
+  /* 小ブロックにして中央揃え */
+  display: block;
+  margin: 0 auto;
+}
+
+.bl_posts_item:first-child {
+  /* 先頭の余白リセット */
+  padding-top: 0;
+}
+
+.bl_posts_header {
+  color: var(--monochrome-dark);
+}
+
+.bl_posts_date {
+  /* display: inline-flex; */
+}
+
+.bl_posts_title {
+  /* 装飾 */
+  letter-spacing: 1px;
+  /* リセット */
+  font-weight: normal;
+  font-size: 128%;
+  margin-top: 0;
+}
+
+.bl_posts_summary {
+  margin-top: 0.2em;
+  text-align: justify;
+  line-height: 1.5;
+}
+
+.bl_posts_footer {
+  margin-top: 0.2em;
+  color: var(--monochrome-dark);
+}
+
+/* タグリスト */
+.bl_tags {
+  display: inline-flex;  /* 横並び、かつ先立つ要素（日付）に回り込める */
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.bl_tags li {
+  margin-left: 0.5em;
+}
+
+.el_archive_header {
+  color: hsl(0, 0%, 45%);
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin: -0.5em 0 0;
+}

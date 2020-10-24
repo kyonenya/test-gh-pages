@@ -1,0 +1,168 @@
+/**
+ * ヘッダー
+ */
+
+.ly_header {
+  font-family: "Avenir Next", "Segoe UI", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "游ゴシック Medium", "Yu Gothic Medium", "メイリオ", Meiryo, sans-serif;
+}
+
+@media screen and (max-width: 559px) {
+  .ly_header {
+    margin-bottom: 1.5em;
+  }
+}
+
+@media screen and (max-width: 559px) {
+  .ly_header_inner {
+    /* スマホでは中央揃えに */
+    text-align: center;
+    margin-top: 1em;
+  }
+}
+
+/* ロゴ ----- */
+.el_logo_title {
+  font-size: 30px;
+  font-weight: normal;
+  vertical-align: center;
+}
+
+.el_logo_suffix {
+  font-size: 16px;
+  font-weight: normal;
+  color: var(--monochrome-dark);
+  vertical-align: baseline;  /* 英単語帳の位置：baseline */
+}
+
+/* ナビメニュー ------ */
+@media screen and (max-width: 559px) {
+  .bl_nav {
+    display: inline-block;
+    text-align: center;
+    padding-top: 0.5em;
+  }
+}
+
+.bl_nav_inner {
+  display: flex;
+}
+
+.bl_nav a {
+  display: block;
+  line-height: 1.25em;  /* 実質的には区切り線の高さ */
+  text-align: center;
+  font-size: 105%;
+  color: var(--main-color);
+}
+
+.bl_nav li {
+  list-style: none;
+  padding: 0 0.6em;  /* メニュー同士の間隔 */
+}
+
+.bl_nav li + li {
+  border-left: 1px solid var(--main-color-light);
+}
+
+/* 検索フォーム ----- */
+.el_search {
+  position: relative;  /* 基準 */
+  width: 1em;
+}
+
+.el_search_icon,
+.el_search_form {
+  position: absolute;  /* フォームにアイコンを重ねる */
+  right: 0;
+}
+
+.el_search_icon {
+  background-image: url(../../assets/images/search.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  top: 0;
+  left: 0.5em;
+  z-index: 10;  /* フォームの下に重ねる */
+  padding-top: 2px;  /* 横一列になるよう手動調整 */
+  width: 1.9em;
+  height: 1.9em;
+  /* fill: hsl(202, 35%, 60%); */
+}
+
+@media (prefers-color-scheme: dark) {
+  .el_search_icon {
+    background-image: url(../../assets/images/search_dark.svg);
+    background-size: 100%;
+  }
+}
+
+.el_search_form {
+  top: -10px;  /* フォームがメニューを覆い隠すよう少し上に */
+  width: 1.9em;  /* メニュー間隔を手動で調整、右からの幅が広いほど間隔が狭まる */
+  cursor: pointer;
+  border: 1px solid var(--monochrome-light);
+  outline: none;
+  /* アイコンの上に重ねて、しかし透明に */
+  z-index: 100;
+  opacity: 0;
+  /* iOSのフォームスタイルを初期化してから装飾 */
+  -webkit-appearance: none;
+  border-radius: 4px;
+}
+
+.el_search_form:focus {
+  /* フォーカスされたら可視化し、左にビョーンと伸びる */
+  opacity: 1;
+  width: 245px;  /* サイズはナビメニューの横幅に合わせて手動調整 */
+  cursor: text;
+}
+
+@media screen and (min-width: 560px) {  
+  /* ヘッダー --------------- */
+  /* 大箱 */
+  .ly_header {
+    background: var(--background-color);  /* 背景色で塗りつぶし */
+    height: 4.5em;
+    margin: 0.5em auto 0;
+  }
+
+  /* 中コンテナ：ロゴ＋メニュー */
+  .ly_header_inner {
+    display: flex;
+    justify-content: space-between;  /* 二つを両端に分ける */
+    align-items: center;  /* 二つの高さ位置を揃える */
+    padding-top: 0.75em;  /* これにて手動で縦方向センタリング */
+  }
+
+  /* 小コンテナ：メニューリスト */
+  .bl_nav_inner {
+    margin-right: 0;
+  }
+
+  .bl_nav a {
+    font-size: 112%;
+  }
+  
+  /* ロゴ */
+  .el_logo_title {
+    margin-left: 3px;
+    font-size: 34px;
+  }
+  
+  /* 検索フォーム */
+  .el_search_icon,
+  .el_search_form {
+    width: 1.7em;  /* メニュー間隔、上書き */
+  }
+  
+  .el_search_icon {
+    width: 1.95em;
+    height: 1.95em;  /* 大きく */
+    top: 2px;  /* 下にずり落ちるので上に押し上げて上書き */
+    left: 10px;
+  }
+  
+  .el_search_form:focus {
+    width: 300px;  /* 手動調整 */
+  }
+}

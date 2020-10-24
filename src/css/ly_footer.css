@@ -1,0 +1,22 @@
+/**
+ * フッター
+ */
+
+.ly_footer {
+  background-color: var(--monochrome-bright);
+  margin-top: 2em;
+}
+
+.ly_footer_inner {
+  padding: 1.25em 0;  /* フッターの高さ */
+}
+
+.el_footer_copyright {
+  font-size: 85%;
+  text-align: center;
+  color: var(--monochrome-dark);
+}
+
+.el_footer_copyright a {
+  color: inherit;
+}

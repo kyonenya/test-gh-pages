@@ -1,0 +1,109 @@
+/**
+ * ベースグループ
+ */
+
+body {
+  font-family: "Helvetica Neue", Verdana, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+  word-break: break-word;  /* 行頭に、。が来るのを避ける */
+  color: var(--text-color);  /* 黒の文字色 */
+  line-height: 1.6;
+  font-size: 16px;
+  background: var(--background-color);
+  -webkit-text-size-adjust: 100%; /* iPhone横画面の表示崩れを防ぐ */
+  /* フッターを下部固定 */
+  display: flex;
+  flex-flow: column;  /* 縦の隊列 */
+  min-height: 100vh;  /* コンテンツが少なくても、 */
+}
+
+@media screen and (min-width: 560px) {
+  body {
+    font-size: 18px;
+    line-height: 1.7;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  body {
+    font-size: 20px;
+  }
+}
+
+main {
+  flex: 1;  /* メイン領域を上下にめいっぱい広げておいて。 */
+}
+
+@media screen and (min-width: 560px) {
+  main {
+    padding-top: 1.5em;  /* ヘッダーに本文がめり込まないように */
+  }
+}
+
+.ly_header,
+.ly_cont {
+  /* 余白限界 */
+  width: 91vw;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 559px) {
+  /* ヘッダー --------------- */
+  .ly_header {
+    margin-bottom: 1.5em;
+  }
+}
+
+@media screen and (min-width: 560px) {
+  .ly_cont,
+  .ly_header {
+    width: 85%;
+    margin: 0 auto;  /* テキストを画面いっぱいに表示せず、中央に寄せる */
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .ly_cont,
+  .ly_header {
+    width: 77%;
+    max-width: 900px;
+  }
+}
+
+/* ヘルパークラス ----- */
+.hp_hidden {
+  display: none !important;
+}
+
+.hp_highlight {
+  background: hsl(60, 100%, 77%);  /* #ffff8c */
+  border: 1px solid hsla(0, 0%, 0%, 0.15);  /*   透明化した黒線を被せる */
+  border-radius: 3px;
+  padding: 2px;
+  margin: 1px;
+}
+
+.hp_underline {
+  border-bottom: 1px solid /* !important */;
+  padding-bottom: 0;
+}
+
+.hp_bold {
+  font-weight: bold;
+}
+
+/* リセット ----- */
+
+a {
+  /* リンク装飾をリセット */
+  text-decoration: none;
+  color: inherit;
+}
+
+ul li {
+  list-style: none;
+}
+
+li:last-child {
+  /* リストの後続要素との余白をリセット */
+  margin-bottom: 0;
+}

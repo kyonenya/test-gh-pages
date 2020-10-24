@@ -1,0 +1,89 @@
+/**
+ * ブログカード
+ */
+
+.bl_text .bl_blogcard {
+  font-size: 80%;
+  border: 1px solid var(--monochrome-light);
+  border-radius: 4px;
+  padding: 0.6em 1em 0.7em;
+  margin: 1.25em 0.5em 1em;
+  box-sizing: border-box;
+}
+
+.bl_text .bl_blogcard a {  /* offset */
+  color: var(--text-color);
+  border: none;
+  line-height: 1.5;
+}
+
+.bl_text .bl_blogcard a:visited {  /* offset */
+  color: var(--text-color);
+  border: none;
+}
+
+.bl_text .bl_blogcard_header {
+  display: inline-flex;
+  color: var(--monochrome-dark);
+}
+
+.bl_text .bl_blogcard_icon {
+  background-image: url(../../assets/icons/quotation-alpha.png);
+  background-size: 100%;
+  vertical-align: bottom;
+  margin-top: 3px;
+}
+
+.bl_text .bl_blogcard_logo {
+  font-size: 130%;
+  color: var(--text-color);
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  margin-left: 0.2em;
+}
+
+.bl_text .bl_blogcard_suffix {
+  color: var(--monochrome-dark);
+  font-size: 75%;
+}
+
+.bl_text .bl_blogcard_title {
+  font-weight: bold;
+  font-size: 120%;
+}
+
+.bl_text .bl_blogcard_text {
+  margin: 0.2em 0;
+}
+
+.bl_text .bl_blogcard_footer {
+  color: var(--monochrome-dark);
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.bl_text .bl_blogcard_time {
+  margin-right: 0;
+}
+
+.bl_text .bl_blogcard_tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  padding: 0;  /* offset */
+  padding-left: 0.6em;
+}
+
+.bl_text .bl_blogcard_tags li {
+  padding-right: 0.3em;
+  list-style: none;  /* offset */
+}
+
+@media screen and (min-width: 560px) {
+  .bl_text .bl_blogcard {
+    margin: 1.5em 2em 1.25em;
+  }
+  
+  .bl_text .bl_blogcard_icon {
+    width: 24px;
+    height: 24px;
+  }
+}

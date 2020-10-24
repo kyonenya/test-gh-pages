@@ -1,0 +1,162 @@
+/**
+ * マークアップ
+ */
+
+.bl_text a {
+  /* 下線と文字とを空けるため、擬似的な下線を作る */
+  display: inline;
+  line-height: 1em;  /* 下余白リセット */
+  text-decoration: none;
+  color: hsl(219, 62%, 50%);  /* 薄青、Wikipediaより */
+  border-bottom: 1px solid hsl(219, 62%, 65%);  /* 細く見せるため薄色に */
+  padding-bottom: 0;  /* 下線との距離 */
+  text-indent: 0;  /* 時々生じる謎のインデントを削除 */
+}
+
+.bl_text a:visited {
+  /* 訪問済みリンク */
+  color: hsl(271, 35%, 45%);  /* 紫、Wikipediaより */
+  border-bottom: 1px solid hsl(271, 35%, 55%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .bl_text a {
+    color: hsl(219, 62%, 60%);
+    border-bottom: 1px solid hsl(219, 62%, 50%);
+  }
+  
+  .bl_text a:visited {
+    color: hsl(271, 35%, 60%);
+    border-bottom: 1px solid hsl(271, 35%, 45%);
+  }
+}
+
+.bl_text p {
+  text-align: justify;  /* 均等割付で右端もぴったり揃う */
+}
+
+.bl_text p + p {
+  text-indent: 1em;  /* 二段落目以降を字下げ */
+  margin-top: 0.5em;  /* 段落間に余白 */
+}
+
+.bl_text blockquote {
+  padding: 0 0 0 0.75em;
+  /* 左：padding＋border-left＝1emになるように */
+  border-left: 0.25em solid var(--monochrome-light);
+  /* background: hsl(0, 0%, 95%); */
+  font-family: Georgia, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "游明朝", YuMincho, serif;
+  box-sizing: border-box;
+  margin: 1em 0 1em 0.7em;
+}
+
+.bl_text blockquote p {
+  /* 左：p:margin＋blockquote:margin＝1emになるように */
+  margin: 0 0.5em 0 0.3em;
+}
+
+.bl_text blockquote p + p {
+  text-indent: 0;  /* 引用ブロック中は字下げなし */
+  margin-top: 0;  /* 段落間余白もなし */
+}
+
+.bl_text em {
+  text-emphasis: dot;
+  font-style: normal;
+}
+
+.bl_text strong {
+  font-weight: bold;
+}
+
+/* 見出し */
+.bl_text h3 {
+  margin: 1.5em 0 0.5em;
+  font-weight: normal;
+  font-size: 112%;
+  letter-spacing: 1px;
+  border-bottom: 1px solid hsl(0, 0%, 75%);
+}
+
+/* 水平線 */
+.bl_text hr {
+  border: none;  /* デフォルトスタイルをリセット */
+  border-top: 1px solid var(--monochrome-light);
+  width: 50%;
+  margin: 1.5em auto;
+}
+
+/* 順序なしリスト */
+.bl_text ul {
+  margin-left: 0;
+  padding-left: 1.5em;
+}
+
+.bl_text ul li {
+  list-style: disc;
+  margin-bottom: 0.25em;
+}
+
+/* 順序つきリスト */
+.bl_text ol {
+  margin-left: 0;
+  padding-left: 2em;
+}
+
+.bl_text ol li {
+  list-style: decimal;
+  margin-bottom: 0.25em;
+}
+
+/* 説明リスト */
+.bl_text dt {
+  float: left;
+  text-align: right;
+  margin-left: -0.5em;  /* 4文字目は画面ギリギリに入れる */
+  width: 4em;  /* 最大文字数 */
+}
+
+.bl_text dd {
+  margin-left: 3.5em;  /* dtの左余白＋最大文字数 */
+  /* "： "にぶら下げ、狭い画面で改行されたとき */
+  padding-left: 1.25em;
+  text-indent: -1.25em;
+}
+
+.bl_text dd::before {
+  content: "： ";
+}
+
+/**
+ * テキスト領域 その他
+ */
+
+.bl_text + .bl_text {
+  /* セクション間余白 */
+  margin-top: 1.5em;
+}
+
+.bl_text_header {
+  padding-bottom: 0.5em;
+  color: var(--monochrome-dark);
+}
+
+.bl_text_title {
+  margin: -0.2em auto 0.4em;
+  font-weight: bold;
+  font-size: 117%;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+@media screen and (min-width: 570px) {
+  .bl_text_title {
+    font-size: 120%;
+    margin: 0 auto 0.5em;
+  }
+}
+
+.bl_text_footer {
+  padding-top: 0.5em;
+  color: var(--monochrome-dark);
+}

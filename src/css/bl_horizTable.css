@@ -1,0 +1,34 @@
+/**
+ * 表
+ */
+
+.bl_horizTable {
+  border: 1px solid var(--monochrome-light);  /* 表全体を囲む */
+  max-width: 560px;
+}
+
+.bl_horizTable table {
+  width: 100%;
+  /* セル列同士の謎の余白リセット */
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.bl_horizTable th {  /* ■□ */
+  width: 20%;  /* テーブル頭の幅 */
+  padding: 0.3em 0;  /* 上下幅 */
+  background: hsl(0, 0%, 95%);
+  border-bottom: 1px solid var(--monochrome-light);
+  font-weight: normal;
+}
+
+.bl_horizTable td {  /* □■ */
+  word-break: keep-all;  /* いつもより早めに改行 */
+  padding: 0.3em 0 0.3em 0.75em;
+  border-bottom: 1px solid var(--monochrome-light);
+}
+
+.bl_horizTable tr:last-child th,
+.bl_horizTable tr:last-child td {
+  border-bottom-width: 0;  /* 最終行の下線を消す */
+}

@@ -1,0 +1,27 @@
+/**
+ * 見出し
+ */
+
+/* 大見出し |_____ */
+.el_heading1 {
+  margin: 2em 0 1em;
+  border-left: 4px solid var(--monochrome-medium);
+  padding-left: 0.45em;
+  border-bottom: 1px solid var(--monochrome-midlight);
+  padding-right: 0.75em;
+  font-weight: normal;
+  font-size: 115%;
+}
+
+/* 先頭の見出しだけ上余白なし */
+.ly_cont .el_heading1:first-child {
+  margin-top: 0;
+}
+
+/* 小見出し _____ */
+.el_heading2 {
+  margin: 1em 0 0.75em;  /* セクション間余白、左右の余白限界からの余白、後続要素との余白 */
+  font-weight: normal;
+  border-bottom: 1px solid var(--monochrome-midlight);
+  font-size: 110%;
+}
