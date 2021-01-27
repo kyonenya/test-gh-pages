@@ -1,0 +1,799 @@
+@charset "UTF-8";
+
+/**
+ * エントリーポイント
+ */
+
+/**
+ * 変数
+ */
+
+:root {
+  --text-color: hsl(0, 0%, 20%);  /* #333 */
+  --background-color: hsl(40, 38%, 97%);
+  --monochrome-bright: hsl(0, 0%, 90%);
+  --monochrome-light: hsl(0, 0%, 85%);
+  --monochrome-midlight: hsl(0, 0%, 75%);
+  --monochrome-medium: hsl(0, 0%, 68%);
+  --monochrome-dark: hsl(0, 0%, 45%);
+  --main-color: hsl(202, 35%, 50%);
+  --main-color-light: hsl(202, 35%, 65%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-color: hsl(40, 38%, 97%);
+    --background-color: hsl(0, 0%, 20%);
+    --monochrome-bright: hsl(0, 0%, 13%);
+    --monochrome-light: hsl(0, 0%, 33%);
+    --monochrome-midlight: hsl(0, 0%, 45%);
+    --monochrome-medium: hsl(0, 0%, 50%);
+    --monochrome-dark: hsl(0, 0%, 65%);
+    --main-color: hsl(349, 39%, 63%);
+    --main-color-light: hsl(349, 39%, 58%);
+  }
+}
+
+/**
+ * A Modern CSS Reset 
+ * https://github.com/hankchizljaw/modern-css-reset/blob/master/dist/reset.css
+ */
+
+/* Box sizing rules */
+
+/*
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+*/
+
+/* Remove default padding */
+
+ul[class],
+ol[class] {
+  padding: 0;
+  /* Remove list styles on ul, ol elements with a class attribute */
+  list-style: none;
+}
+
+/* Remove default margin */
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Set core root defaults */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Natural flow and rhythm in articles by default */
+
+/*
+article > * + * {
+  margin-top: 1em;
+}
+*/
+
+/* Inherit fonts for inputs and buttons */
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Blur images when they have no alt attribute */
+
+/*
+img:not([alt]) {
+  filter: blur(10px);
+}
+*/
+
+/* Remove all animations and transitions for people that prefer not to see them */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/**
+ * ベースグループ
+ */
+
+body {
+  font-family: "Helvetica Neue", Verdana, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+  word-break: break-word;  /* 行頭に、。が来るのを避ける */
+  color: var(--text-color);  /* 黒の文字色 */
+  line-height: 1.6;
+  font-size: 16px;
+  background: var(--background-color);
+  -webkit-text-size-adjust: 100%; /* iPhone横画面の表示崩れを防ぐ */
+  /* フッターを下部固定 */
+  display: flex;
+  flex-flow: column;  /* 縦の隊列 */
+  min-height: 100vh;  /* コンテンツが少なくても、 */
+}
+
+@media screen and (min-width: 560px) {
+  body {
+    font-size: 18px;
+    line-height: 1.7;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  body {
+    font-size: 20px;
+  }
+}
+
+main {
+  flex: 1;  /* メイン領域を上下にめいっぱい広げておいて。 */
+}
+
+@media screen and (min-width: 560px) {
+  main {
+    padding-top: 1.5em;  /* ヘッダーに本文がめり込まないように */
+  }
+}
+
+.ly_header,
+.ly_cont {
+  /* 余白限界 */
+  width: 91vw;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 559px) {
+  /* ヘッダー --------------- */
+  .ly_header {
+    margin-bottom: 1.5em;
+  }
+}
+
+@media screen and (min-width: 560px) {
+  .ly_cont,
+  .ly_header {
+    width: 85%;
+    margin: 0 auto;  /* テキストを画面いっぱいに表示せず、中央に寄せる */
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .ly_cont,
+  .ly_header {
+    width: 77%;
+    max-width: 900px;
+  }
+}
+
+/* ヘルパークラス ----- */
+
+.hp_hidden {
+  display: none !important;
+}
+
+.hp_highlight {
+  background: hsl(60, 100%, 77%);  /* #ffff8c */
+  border: 1px solid hsla(0, 0%, 0%, 0.15);  /*   透明化した黒線を被せる */
+  border-radius: 3px;
+  padding: 2px;
+  margin: 1px;
+}
+
+.hp_underline {
+  border-bottom: 1px solid /* !important */;
+  padding-bottom: 0;
+}
+
+.hp_bold {
+  font-weight: bold;
+}
+
+/* リセット ----- */
+
+a {
+  /* リンク装飾をリセット */
+  text-decoration: none;
+  color: inherit;
+}
+
+ul li {
+  list-style: none;
+}
+
+li:last-child {
+  /* リストの後続要素との余白をリセット */
+  margin-bottom: 0;
+}
+
+/**
+ * ヘッダー
+ */
+
+.ly_header {
+  font-family: "Avenir Next", "Segoe UI", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "游ゴシック Medium", "Yu Gothic Medium", "メイリオ", Meiryo, sans-serif;
+}
+
+@media screen and (max-width: 559px) {
+  .ly_header {
+    margin-bottom: 1.5em;
+  }
+}
+
+@media screen and (max-width: 559px) {
+  .ly_header_inner {
+    /* スマホでは中央揃えに */
+    text-align: center;
+    margin-top: 1em;
+  }
+}
+
+/* ロゴ ----- */
+
+.el_logo_title {
+  font-size: 30px;
+  font-weight: normal;
+  vertical-align: center;
+}
+
+.el_logo_suffix {
+  font-size: 16px;
+  font-weight: normal;
+  color: var(--monochrome-dark);
+  vertical-align: baseline;  /* 英単語帳の位置：baseline */
+}
+
+/* ナビメニュー ------ */
+
+@media screen and (max-width: 559px) {
+  .bl_nav {
+    display: inline-block;
+    text-align: center;
+    padding-top: 0.5em;
+  }
+}
+
+.bl_nav_inner {
+  display: flex;
+}
+
+.bl_nav a {
+  display: block;
+  line-height: 1.25em;  /* 実質的には区切り線の高さ */
+  text-align: center;
+  font-size: 105%;
+  color: var(--main-color);
+}
+
+.bl_nav li {
+  list-style: none;
+  padding: 0 0.6em;  /* メニュー同士の間隔 */
+}
+
+.bl_nav li + li {
+  border-left: 1px solid var(--main-color-light);
+}
+
+/* 検索フォーム ----- */
+
+.el_search {
+  position: relative;  /* 基準 */
+  width: 1em;
+}
+
+.el_search_icon,
+.el_search_form {
+  position: absolute;  /* フォームにアイコンを重ねる */
+  right: 0;
+}
+
+.el_search_icon {
+  background-image: url(../../assets/images/search.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  top: 0;
+  left: 0.5em;
+  z-index: 10;  /* フォームの下に重ねる */
+  padding-top: 2px;  /* 横一列になるよう手動調整 */
+  width: 1.9em;
+  height: 1.9em;
+  /* fill: hsl(202, 35%, 60%); */
+}
+
+@media (prefers-color-scheme: dark) {
+  .el_search_icon {
+    background-image: url(../../assets/images/search_dark.svg);
+    background-size: 100%;
+  }
+}
+
+.el_search_form {
+  top: -10px;  /* フォームがメニューを覆い隠すよう少し上に */
+  width: 1.9em;  /* メニュー間隔を手動で調整、右からの幅が広いほど間隔が狭まる */
+  cursor: pointer;
+  border: 1px solid var(--monochrome-light);
+  outline: none;
+  /* アイコンの上に重ねて、しかし透明に */
+  z-index: 100;
+  opacity: 0;
+  /* iOSのフォームスタイルを初期化してから装飾 */
+  -webkit-appearance: none;
+  border-radius: 4px;
+}
+
+.el_search_form:focus {
+  /* フォーカスされたら可視化し、左にビョーンと伸びる */
+  opacity: 1;
+  width: 245px;  /* サイズはナビメニューの横幅に合わせて手動調整 */
+  cursor: text;
+}
+
+@media screen and (min-width: 560px) {  
+  /* ヘッダー --------------- */
+  /* 大箱 */
+  .ly_header {
+    background: var(--background-color);  /* 背景色で塗りつぶし */
+    height: 4.5em;
+    margin: 0.5em auto 0;
+  }
+
+  /* 中コンテナ：ロゴ＋メニュー */
+  .ly_header_inner {
+    display: flex;
+    justify-content: space-between;  /* 二つを両端に分ける */
+    align-items: center;  /* 二つの高さ位置を揃える */
+    padding-top: 0.75em;  /* これにて手動で縦方向センタリング */
+  }
+
+  /* 小コンテナ：メニューリスト */
+  .bl_nav_inner {
+    margin-right: 0;
+  }
+
+  .bl_nav a {
+    font-size: 112%;
+  }
+  
+  /* ロゴ */
+  .el_logo_title {
+    margin-left: 3px;
+    font-size: 34px;
+  }
+  
+  /* 検索フォーム */
+  .el_search_icon,
+  .el_search_form {
+    width: 1.7em;  /* メニュー間隔、上書き */
+  }
+  
+  .el_search_icon {
+    width: 1.95em;
+    height: 1.95em;  /* 大きく */
+    top: 2px;  /* 下にずり落ちるので上に押し上げて上書き */
+    left: 10px;
+  }
+  
+  .el_search_form:focus {
+    width: 300px;  /* 手動調整 */
+  }
+}
+
+/**
+ * フッター
+ */
+
+.ly_footer {
+  background-color: var(--monochrome-bright);
+  margin-top: 2em;
+}
+
+.ly_footer_inner {
+  padding: 1.25em 0;  /* フッターの高さ */
+}
+
+.el_footer_copyright {
+  font-size: 85%;
+  text-align: center;
+  color: var(--monochrome-dark);
+}
+
+.el_footer_copyright a {
+  color: inherit;
+}
+
+/**
+ * マークアップ
+ */
+
+.bl_text a {
+  /* 下線と文字とを空けるため、擬似的な下線を作る */
+  display: inline;
+  line-height: 1em;  /* 下余白リセット */
+  text-decoration: none;
+  color: hsl(219, 62%, 50%);  /* 薄青、Wikipediaより */
+  border-bottom: 1px solid hsl(219, 62%, 65%);  /* 細く見せるため薄色に */
+  padding-bottom: 0;  /* 下線との距離 */
+  text-indent: 0;  /* 時々生じる謎のインデントを削除 */
+}
+
+.bl_text a:visited {
+  /* 訪問済みリンク */
+  color: hsl(271, 35%, 45%);  /* 紫、Wikipediaより */
+  border-bottom: 1px solid hsl(271, 35%, 55%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .bl_text a {
+    color: hsl(219, 62%, 60%);
+    border-bottom: 1px solid hsl(219, 62%, 50%);
+  }
+  
+  .bl_text a:visited {
+    color: hsl(271, 35%, 60%);
+    border-bottom: 1px solid hsl(271, 35%, 45%);
+  }
+}
+
+.bl_text p {
+  text-align: justify;  /* 均等割付で右端もぴったり揃う */
+}
+
+.bl_text p + p {
+  text-indent: 1em;  /* 二段落目以降を字下げ */
+  margin-top: 0.5em;  /* 段落間に余白 */
+}
+
+.bl_text blockquote {
+  padding: 0 0 0 0.75em;
+  /* 左：padding＋border-left＝1emになるように */
+  border-left: 0.25em solid var(--monochrome-light);
+  /* background: hsl(0, 0%, 95%); */
+  font-family: Georgia, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "游明朝", YuMincho, serif;
+  box-sizing: border-box;
+  margin: 1em 0 1em 0.7em;
+}
+
+.bl_text blockquote p {
+  /* 左：p:margin＋blockquote:margin＝1emになるように */
+  margin: 0 0.5em 0 0.3em;
+}
+
+.bl_text blockquote p + p {
+  text-indent: 0;  /* 引用ブロック中は字下げなし */
+  margin-top: 0;  /* 段落間余白もなし */
+}
+
+.bl_text em {
+  text-emphasis: dot;
+  font-style: normal;
+}
+
+.bl_text strong {
+  font-weight: bold;
+}
+
+/* 見出し */
+
+.bl_text h3 {
+  margin: 1.5em 0 0.5em;
+  font-weight: normal;
+  font-size: 112%;
+  letter-spacing: 1px;
+  border-bottom: 1px solid hsl(0, 0%, 75%);
+}
+
+/* 水平線 */
+
+.bl_text hr {
+  border: none;  /* デフォルトスタイルをリセット */
+  border-top: 1px solid var(--monochrome-light);
+  width: 50%;
+  margin: 1.5em auto;
+}
+
+/* 順序なしリスト */
+
+.bl_text ul {
+  margin-left: 0;
+  padding-left: 1.5em;
+}
+
+.bl_text ul li {
+  list-style: disc;
+  margin-bottom: 0.25em;
+}
+
+/* 順序つきリスト */
+
+.bl_text ol {
+  margin-left: 0;
+  padding-left: 2em;
+}
+
+.bl_text ol li {
+  list-style: decimal;
+  margin-bottom: 0.25em;
+}
+
+/* 説明リスト */
+
+.bl_text dt {
+  float: left;
+  text-align: right;
+  margin-left: -0.5em;  /* 4文字目は画面ギリギリに入れる */
+  width: 4em;  /* 最大文字数 */
+}
+
+.bl_text dd {
+  margin-left: 3.5em;  /* dtの左余白＋最大文字数 */
+  /* "： "にぶら下げ、狭い画面で改行されたとき */
+  padding-left: 1.25em;
+  text-indent: -1.25em;
+}
+
+.bl_text dd::before {
+  content: "： ";
+}
+
+/**
+ * テキスト領域 その他
+ */
+
+.bl_text + .bl_text {
+  /* セクション間余白 */
+  margin-top: 1.5em;
+}
+
+.bl_text_header {
+  padding-bottom: 0.5em;
+  color: var(--monochrome-dark);
+}
+
+.bl_text_title {
+  margin: -0.2em auto 0.4em;
+  font-weight: bold;
+  font-size: 117%;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+@media screen and (min-width: 570px) {
+  .bl_text_title {
+    font-size: 120%;
+    margin: 0 auto 0.5em;
+  }
+}
+
+.bl_text_footer {
+  padding-top: 0.5em;
+  color: var(--monochrome-dark);
+}
+
+/**
+ * 記事一覧リスト
+ */
+
+.bl_posts_item {
+  padding: 0.5em 0;
+  border-bottom: 1px solid var(--monochrome-light);
+  /* 小ブロックにして中央揃え */
+  display: block;
+  margin: 0 auto;
+}
+
+.bl_posts_item:first-child {
+  /* 先頭の余白リセット */
+  padding-top: 0;
+}
+
+.bl_posts_header {
+  color: var(--monochrome-dark);
+}
+
+.bl_posts_date {
+  /* display: inline-flex; */
+}
+
+.bl_posts_title {
+  /* 装飾 */
+  letter-spacing: 1px;
+  /* リセット */
+  font-weight: normal;
+  font-size: 128%;
+  margin-top: 0;
+}
+
+.bl_posts_summary {
+  margin-top: 0.2em;
+  text-align: justify;
+  line-height: 1.5;
+}
+
+.bl_posts_footer {
+  margin-top: 0.2em;
+  color: var(--monochrome-dark);
+}
+
+/* タグリスト */
+
+.bl_tags {
+  display: inline-flex;  /* 横並び、かつ先立つ要素（日付）に回り込める */
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.bl_tags li {
+  margin-left: 0.5em;
+}
+
+.el_archive_header {
+  color: hsl(0, 0%, 45%);
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin: -0.5em 0 0;
+}
+
+/**
+ * 見出し
+ */
+
+/* 大見出し |_____ */
+
+.el_heading1 {
+  margin: 2em 0 1em;
+  border-left: 4px solid var(--monochrome-medium);
+  padding-left: 0.45em;
+  border-bottom: 1px solid var(--monochrome-midlight);
+  padding-right: 0.75em;
+  font-weight: normal;
+  font-size: 115%;
+}
+
+/* 先頭の見出しだけ上余白なし */
+
+.ly_cont .el_heading1:first-child {
+  margin-top: 0;
+}
+
+/* 小見出し _____ */
+
+.el_heading2 {
+  margin: 1em 0 0.75em;  /* セクション間余白、左右の余白限界からの余白、後続要素との余白 */
+  font-weight: normal;
+  border-bottom: 1px solid var(--monochrome-midlight);
+  font-size: 110%;
+}
+
+/**
+ * ブログカード
+ */
+
+.bl_text .bl_blogcard {
+  font-size: 80%;
+  border: 1px solid var(--monochrome-light);
+  border-radius: 4px;
+  padding: 0.6em 1em 0.7em;
+  margin: 1.25em 0.5em 1em;
+  box-sizing: border-box;
+}
+
+.bl_text .bl_blogcard a {  /* offset */
+  color: var(--text-color);
+  border: none;
+  line-height: 1.5;
+}
+
+.bl_text .bl_blogcard a:visited {  /* offset */
+  color: var(--text-color);
+  border: none;
+}
+
+.bl_text .bl_blogcard_header {
+  display: inline-flex;
+  color: var(--monochrome-dark);
+}
+
+.bl_text .bl_blogcard_icon {
+  background-image: url(../../assets/icons/quotation-alpha.png);
+  background-size: 100%;
+  vertical-align: bottom;
+  margin-top: 3px;
+}
+
+.bl_text .bl_blogcard_logo {
+  font-size: 130%;
+  color: var(--text-color);
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  margin-left: 0.2em;
+}
+
+.bl_text .bl_blogcard_suffix {
+  color: var(--monochrome-dark);
+  font-size: 75%;
+}
+
+.bl_text .bl_blogcard_title {
+  font-weight: bold;
+  font-size: 120%;
+}
+
+.bl_text .bl_blogcard_text {
+  margin: 0.2em 0;
+}
+
+.bl_text .bl_blogcard_footer {
+  color: var(--monochrome-dark);
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.bl_text .bl_blogcard_time {
+  margin-right: 0;
+}
+
+.bl_text .bl_blogcard_tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  padding: 0;  /* offset */
+  padding-left: 0.6em;
+}
+
+.bl_text .bl_blogcard_tags li {
+  padding-right: 0.3em;
+  list-style: none;  /* offset */
+}
+
+@media screen and (min-width: 560px) {
+  .bl_text .bl_blogcard {
+    margin: 1.5em 2em 1.25em;
+  }
+  
+  .bl_text .bl_blogcard_icon {
+    width: 24px;
+    height: 24px;
+  }
+}
