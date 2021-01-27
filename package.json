@@ -1,0 +1,11 @@
+{
+  "name": "test-gh-pages",
+  "version": "1.0.0",
+  "scripts": {
+    "tsc": "tsc -w",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "typescript": "^4.1.3"
+  }
+}
